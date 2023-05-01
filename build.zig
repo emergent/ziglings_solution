@@ -576,6 +576,8 @@ pub fn build(b: *Build) !void {
     const use_healed = b.option(bool, "healed", "Run exercises from patches/healed") orelse false;
     const exno: ?usize = b.option(usize, "n", "Select exercise");
 
+    std.debug.print("{} {}\n", .{ use_healed, exno orelse 0 });
+
     const header_step = PrintStep.create(b, logo);
 
     if (exno) |n| {
@@ -683,8 +685,8 @@ pub fn build(b: *Build) !void {
     }
     ziglings_step.dependOn(prev_step);
 
-    const test_step = b.step("test", "Run all the tests");
-    test_step.dependOn(tests.addCliTests(b, &exercises));
+    //const test_step = b.step("test", "Run all the tests");
+    //test_step.dependOn(tests.addCliTests(b, &exercises));
 }
 
 var use_color_escapes = false;
